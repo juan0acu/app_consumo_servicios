@@ -6,16 +6,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MyAdapter(private val listPost : List<PostModel>) :RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class PostAdapter(private val listPost : List<PostModel>) :RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_my_viewholder,parent,false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
+        return PostViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_my_viewholder,parent,false))
         //cual es la vista que deseo que se muestre en el recycler
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         holder.bind(listPost[position]) // conectar  datos y vista
     }
 
@@ -24,7 +24,7 @@ class MyAdapter(private val listPost : List<PostModel>) :RecyclerView.Adapter<My
     }
 
 
-    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
        val idText = itemView.findViewById<TextView>(R.id.idText)
        val idTitle = itemView.findViewById<TextView>(R.id.titleText)
        val idDescrip = itemView.findViewById<TextView>(R.id.descripText)
@@ -37,3 +37,5 @@ class MyAdapter(private val listPost : List<PostModel>) :RecyclerView.Adapter<My
 
     }
 }
+
+

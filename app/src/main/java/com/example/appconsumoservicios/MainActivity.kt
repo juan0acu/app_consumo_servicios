@@ -3,11 +3,8 @@ package com.example.appconsumoservicios
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
-import androidx.recyclerview.widget.RecyclerView.Recycler
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         consumirServicio()
     }
+
 
     fun consumirServicio(){
 
@@ -54,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<PostModel>>, response: Response<List<PostModel>>) {
                 println("Esta es la RESPUESTA")
                 println(response.body().toString())
-              recyclre1.adapter = MyAdapter(response.body()?: listOf()) //Aca el listado de lo que voy a mostrar
+              recyclre1.adapter = PostAdapter(response.body()?: listOf()) //Aca el listado de lo que voy a mostrar
             }
 
             override fun onFailure(call: Call<List<PostModel>>, t: Throwable) {
@@ -67,3 +65,4 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
+
