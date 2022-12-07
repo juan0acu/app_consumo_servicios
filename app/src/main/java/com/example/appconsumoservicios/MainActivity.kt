@@ -24,8 +24,8 @@ class MainActivity : AppCompatActivity() {
         //recyclre1.layoutManager = LinearLayoutManager(this,RecyclerView.HORIZONTAL,false)     //primero en configurar como sera el recycler
        // recyclre1.layoutManager = GridLayoutManager(this,2)     //primero en configurar como sera el recycler
         recyclre1.layoutManager = LinearLayoutManager(this)     //primero en configurar como sera el recycler
-
         consumirServicio()
+        //test
     }
 
 
