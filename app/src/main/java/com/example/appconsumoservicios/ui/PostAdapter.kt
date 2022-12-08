@@ -1,10 +1,12 @@
-package com.example.appconsumoservicios
+package com.example.appconsumoservicios.ui
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.appconsumoservicios.data.PostModel
+import com.example.appconsumoservicios.R
 
 class PostAdapter(private val listPost : List<PostModel>) :RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 

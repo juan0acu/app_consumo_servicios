@@ -1,34 +1,17 @@
-package com.example.appconsumoservicios
+package com.example.appconsumoservicios.ui
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.example.appconsumoservicios.data.PostApiServices
+import com.example.appconsumoservicios.data.PostModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-class MainActivity : AppCompatActivity() {
-    lateinit var text : TextView
-    lateinit var recyclre1 : RecyclerView
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        text = findViewById(R.id.text_hola)
-        recyclre1 = findViewById(R.id.recyclerView2)
-        //recyclre1.layoutManager = LinearLayoutManager(this,RecyclerView.HORIZONTAL,false)     //primero en configurar como sera el recycler
-       // recyclre1.layoutManager = GridLayoutManager(this,2)     //primero en configurar como sera el recycler
-        recyclre1.layoutManager = LinearLayoutManager(this)     //primero en configurar como sera el recycler
-        consumirServicio()
-        //test
-    }
-
-
+class MainViewModel : ViewModel() {
+    val mutablePostList = MutableLiveData<List<PostModel>>()
     fun consumirServicio(){
 
         val retrofit = Retrofit.Builder() //Instancia para llamar servicio
@@ -48,11 +31,12 @@ class MainActivity : AppCompatActivity() {
 
         })*/
 
-        services.getPost().enqueue(object : Callback<List<PostModel>>{
+        services.getPost().enqueue(object : Callback<List<PostModel>> {
             override fun onResponse(call: Call<List<PostModel>>, response: Response<List<PostModel>>) {
                 println("Esta es la RESPUESTA")
                 println(response.body().toString())
-              recyclre1.adapter = PostAdapter(response.body()?: listOf()) //Aca el listado de lo que voy a mostrar
+                mutablePostList.postValue(response.body())
+               //recyclre1.adapter = PostAdapter(response.body()?: listOf()) //Aca el listado de lo que voy a mostrar
             }
 
             override fun onFailure(call: Call<List<PostModel>>, t: Throwable) {
@@ -65,4 +49,3 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
-

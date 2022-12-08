@@ -1,4 +1,4 @@
-package com.example.appconsumoservicios
+package com.example.appconsumoservicios.data
 
 
 data class PostModel (
